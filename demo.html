@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APlayer 左下角皮肤预览</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+<link rel="stylesheet" href="./aplayer-fixed.css">
+<style>
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #e8f3ff 0%, #f6f8fb 45%, #ffeef6 100%);
+    color: #333;
+    padding: 48px 24px 180px;
+    box-sizing: border-box;
+  }
+  h1 { font-size: 1.4rem; margin: 0 0 8px; }
+  p { color: #666; line-height: 1.8; max-width: 720px; }
+  .demo-bar { position: fixed; top: 16px; right: 16px; z-index: 1100; }
+  .demo-bar button {
+    border: 1px solid rgba(0, 0, 0, .12); background: rgba(255, 255, 255, .8);
+    color: inherit; padding: 6px 14px; border-radius: 999px; cursor: pointer;
+    backdrop-filter: blur(8px);
+  }
+  [data-theme="dark"] body {
+    background: linear-gradient(135deg, #0f1420 0%, #141a26 55%, #1b1220 100%);
+    color: #e8f2fb;
+  }
+  [data-theme="dark"] p { color: #9db4c8; }
+  [data-theme="dark"] .demo-bar button {
+    border-color: rgba(255, 255, 255, .16);
+    background: rgba(32, 38, 48, .75);
+    color: #e8f2fb;
+  }
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <button type="button" onclick="toggleTheme()">切换暗色</button>
+</div>
+
+<h1>APlayer 左下角皮肤</h1>
+<p>播放器固定在左下角，暂停时收成方形封面，悬停展开成玻璃卡片。歌单由 <code>nav-music.js</code> 从 Meting 接口拉取，音频走网易云外链。</p>
+<p>请用本地 HTTP 服务打开本页（例如 <code>npx serve</code> 或 <code>python -m http.server 8080</code>），直接用 <code>file://</code> 打开会因为跨域拿不到歌单。</p>
+
+<div id="nav-music" class="no-destroy"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<script src="./nav-music.js"></script>
+<script>
+  function toggleTheme() {
+    var root = document.documentElement;
+    root.dataset.theme = root.dataset.theme === 'dark' ? '' : 'dark';
+  }
+</script>
+</body>
+</html>
